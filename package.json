@@ -1,0 +1,23 @@
+{
+  "name": "lirc_node",
+  "version": "0.0.1",
+  "description": "Control LIRC from Node",
+  "main": "lib/lirc_node.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alexbain/lirc_node.git"
+  },
+  "keywords": [
+    "lirc"
+  ],
+  "devDependencies": {
+    "colors": "*",
+    "mocha": "*",
+    "sinon": "*",
+    "should": "*"
+  },
+  "author": "Alex Bain"
+}
