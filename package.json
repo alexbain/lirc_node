@@ -14,10 +14,9 @@
     "lirc"
   ],
   "devDependencies": {
-    "colors": "*",
     "mocha": "*",
-    "sinon": "*",
-    "should": "*"
+    "should": "*",
+    "sinon": "*"
   },
   "author": "Alex Bain"
 }
