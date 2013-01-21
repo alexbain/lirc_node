@@ -4,18 +4,9 @@ var lirc_node = require('../'),
     q = require('q');
 
 describe('lirc_node', function() {
-  describe('reload', function() {
+  describe('init', function() {
     it('should exist', function() {
-      assert(lirc_node.reload instanceof Function);
-    });
-
-    it('should call exports.irsend.list', function(done) {
-      var spy = sinon.spy(lirc_node.irsend, 'list');
-      lirc_node.reload(function() {
-        assert(spy.called);
-        done();
-        spy.restore();
-      });
+      assert(lirc_node.init instanceof Function);
     });
   });
 
@@ -23,9 +14,6 @@ describe('lirc_node', function() {
     describe('#_populateRemotes', function() {
       beforeEach(function() {
         lirc_node.remotes = {};
-      });
-
-      afterEach(function() {
       });
 
       it('should exist', function() {
