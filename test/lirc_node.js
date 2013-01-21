@@ -58,6 +58,21 @@ describe('lirc_node', function() {
       });
     });
 
+    describe('#_populateCommands', function() {
+      beforeEach(function() {
+        sinon.stub(lirc_node.irsend, 'list', function() {});
+      });
+
+      afterEach(function() {
+        lirc_node.remotes = {};
+        lirc_node.irsend.list.restore();
+      });
+
+      it('should exist', function() {
+        assert(lirc_node._populateCommands instanceof Function);
+      });
+    });
+
     describe('#_populateRemoteCommands', function() {
       beforeEach(function() {
         lirc_node.remotes = {};
