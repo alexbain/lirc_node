@@ -22,7 +22,10 @@ describe('lirc_node', function() {
   describe("Setting an internal list of Remotes", function() {
     describe('#_populateRemotes', function() {
       beforeEach(function() {
-        lirc_node.remotes = null;
+        lirc_node.remotes = {};
+      });
+
+      afterEach(function() {
       });
 
       it('should exist', function() {
@@ -30,23 +33,23 @@ describe('lirc_node', function() {
       });
 
       it('should set exports.remotes as an object', function() {
-          lirc_node._populateRemotes('', '', '');
-          assert(lirc_node.remotes instanceof Object);
+        lirc_node._populateRemotes('', '', '');
+        assert(lirc_node.remotes instanceof Object);
       });
 
       it('should set exports.remotes to have keys for a single remote name', function() {
-          var stdout = "irsend: SonyTV";
+        var stderr = "irsend: SonyTV";
 
-          lirc_node._populateRemotes('', stdout, '');
+        lirc_node._populateRemotes('', '', stderr);
 
-          assert(Object.keys(lirc_node.remotes).length === 1);
-          assert(lirc_node.remotes["SonyTV"] instanceof Array);
+        assert(Object.keys(lirc_node.remotes).length === 1);
+        assert(lirc_node.remotes["SonyTV"] instanceof Array);
       });
 
       it('should set exports.remotes to have keys for all remote names', function() {
-          var stdout = "irsend: Yamaha\nirsend: Arizer\nirsend: Microsoft_Xbox360";
+          var stderr = "irsend: Yamaha\nirsend: Arizer\nirsend: Microsoft_Xbox360";
 
-          lirc_node._populateRemotes('', stdout, '');
+          lirc_node._populateRemotes('', '', stderr);
 
           assert(Object.keys(lirc_node.remotes).length === 3);
           assert(lirc_node.remotes["Yamaha"] instanceof Array);
@@ -66,9 +69,9 @@ describe('lirc_node', function() {
 
       it('should push commands onto the remote\'s array', function() {
         var remote = 'Microsoft_Xbox360';
-        var stdout = 'irsend: 0000000000000bd7 OpenClose\nirsend: 0000000000000b9b XboxFancyButton';
+        var stderr = 'irsend: 0000000000000bd7 OpenClose\nirsend: 0000000000000b9b XboxFancyButton';
         lirc_node.remotes[remote] = [];
-        lirc_node._populateRemoteCommands(remote, '', stdout, '');
+        lirc_node._populateRemoteCommands(remote, '', '', stderr);
         assert(lirc_node.remotes[remote][0] == 'OpenClose');
         assert(lirc_node.remotes[remote][1] == 'XboxFancyButton');
       });
