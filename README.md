@@ -20,9 +20,9 @@ is used to send infrared commands. I have attempted to emulate every option and
 command that ``irsend`` currently documents on it's API page. There is a full
 test suite that can be ran to ensure that these options and commands work correctly.
 
-In future version I hope to add support for calling additional LIRC executables.
+In a future version I hope to add support for calling additional LIRC executables.
 I have my eye on being able to call the ``irrecord`` executable from NodeJS to
-teach LIRC new remotess / commands from Node. Given that ``irrecord`` requires
+teach LIRC new remotess / commands from a Node app. Given that ``irrecord`` requires
 some back and forth via the command line I haven't attempted it just yet. If you,
 the awesome developer reading this, has any ideas please don't hesitate
 to email me or take a stab at it yourself.
@@ -43,7 +43,7 @@ This project contains an example application that uses this module in a NodeJS a
 I recommend checking out the [Open Source Universal Remote](http://opensourceuniversalremote.com)
 project to see an example implementation.
 
-The lirc_node module will only discover remotes and commands that LIRC already
+The ``lirc_node`` module will only discover remotes and commands that LIRC already
 knows about. You'll need to program those remotes and commands using the ``irrecord``
 utility. If this sounds like gibberish to you, I'd recommend reading about
 [LIRC](http://www.lirc.org/) and [irrecord](http://www.lirc.org/html/irrecord.html)
