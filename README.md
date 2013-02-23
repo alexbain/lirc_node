@@ -15,10 +15,10 @@ executables that can be called to accomplish this.
 
 This module provides a wrapper around certain LIRC command line executables so
 that you can make LIRC calls from within a NodeJS app. At this time (v0.0.1) the
-only excutable that has a wrapper is ``irsend``. ``irsend`` is used to send
-infrared commands. I have attempted to emulate every option and command that
-``irsend`` currently documents on it's API page. There is a full test suite that
-can be ran to ensure that these options and commands work correctly.
+only excutable that has a wrapper is ``irsend``. [irsend](http://www.lirc.org/html/irsend.html)
+is used to send infrared commands. I have attempted to emulate every option and
+command that ``irsend`` currently documents on it's API page. There is a full
+test suite that can be ran to ensure that these options and commands work correctly.
 
 In future version I hope to add support for calling additional LIRC executables.
 I have my eye on being able to call the ``irrecord`` executable from NodeJS to
@@ -36,22 +36,27 @@ that were closed source and didn't allow me to extend upon or improve them.
 
 If you're interested in seeing an example of this module in use please check
 out the [Open Source Universal Remote](http://opensourceuniversalremote.com) project.
-This project contains full instructions on how to use this module in a NodeJS
-app.
+This project contains an example application that uses this module in a NodeJS app.
 
 ## How do I use it?
 
 I recommend checking out the [Open Source Universal Remote](http://opensourceuniversalremote.com)
 project to see an example implementation.
 
-However, here is a very simple example of how to use the ``lirc_node`` module in
+The lirc_node module will only discover remotes and commands that LIRC already
+knows about. You'll need to program those remotes and commands using the ``irrecord``
+utility. If this sounds like gibberish to you, I'd recommend reading about
+[LIRC](http://www.lirc.org/) and [irrecord](http://www.lirc.org/html/irrecord.html)
+before proceeding.
+
+Here is a very simple example of how to use the ``lirc_node`` module in
 a node app. I recommend reading through the source code for full details or to
-answer any ambiguities.
+answer any ambiguities. There are additional options that are not shown here.
 
     lirc_node = require('lirc_node');
     lirc_node.init();
 
-    // To see all of the remotes and commands for each remote, run:
+    // To see all of the remotes and commands that LIRC knows about:
     console.log(lirc_node.remotes);
 
     /*
@@ -61,12 +66,14 @@ answer any ambiguities.
         "tv": ["Power", "VolumeUp", "VolumeDown"],
         "xbox360": ["Power", "A", "B"]
       }
-
     */
+
+    // Tell the TV to turn on
     lirc_node.irsend.send_once("tv", "power", function() {
       console.log("Sent TV power command!");
     });
 
+    // Tell the Xbox360 to turn on
     lirc_node.irsend.send_once("xbox360", "power", function() {
       console.log("Sent Xbox360 power command!");
     });
