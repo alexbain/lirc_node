@@ -7,10 +7,75 @@ lirc_node
 It's designed to be used in a situation where you wish to control infrared
 devices using LIRC from a Node application.
 
+## What is this?
+
+LIRC is a fantastic open source software package that allows you to send and
+receive infrared commands from Linux. It comes with a number of command line
+executables that can be called to accomplish this.
+
+This module provides a wrapper around certain LIRC command line executables so
+that you can make LIRC calls from within a NodeJS app. At this time (v0.0.1) the
+only excutable that has a wrapper is ``irsend``. ``irsend`` is used to send
+infrared commands. I have attempted to emulate every option and command that
+``irsend`` currently documents on it's API page. There is a full test suite that
+can be ran to ensure that these options and commands work correctly.
+
+In future version I hope to add support for calling additional LIRC executables.
+I have my eye on being able to call the ``irrecord`` executable from NodeJS to
+teach LIRC new remotess / commands from Node. Given that ``irrecord`` requires
+some back and forth via the command line I haven't attempted it just yet. If you,
+the awesome developer reading this, has any ideas please don't hesitate
+to email me or take a stab at it yourself.
+
+
+## Why does this exist?
+
+I wrote this module as part of a personal project to make a completely open
+hardware and open source universal remote. I was frustrated at existing solutions
+that were closed source and didn't allow me to extend upon or improve them.
+
+If you're interested in seeing an example of this module in use please check
+out the [Open Source Universal Remote](http://opensourceuniversalremote.com) project.
+This project contains full instructions on how to use this module in a NodeJS
+app.
+
+## How do I use it?
+
+I recommend checking out the [Open Source Universal Remote](http://opensourceuniversalremote.com)
+project to see an example implementation.
+
+However, here is a very simple example of how to use the ``lirc_node`` module in
+a node app. I recommend reading through the source code for full details or to
+answer any ambiguities.
+
+    lirc_node = require('lirc_node');
+    lirc_node.init();
+
+    // To see all of the remotes and commands for each remote, run:
+    console.log(lirc_node.remotes);
+
+    /*
+      Let's pretend that the output of lirc_node.remotes looks like this:
+
+      {
+        "tv": ["Power", "VolumeUp", "VolumeDown"],
+        "xbox360": ["Power", "A", "B"]
+      }
+
+    */
+    lirc_node.irsend.send_once("tv", "power", function() {
+      console.log("Sent TV power command!");
+    });
+
+    lirc_node.irsend.send_once("xbox360", "power", function() {
+      console.log("Sent Xbox360 power command!");
+    });
+
+
 ## Development
 
-To contribute patches, run tests or benchmarks, make sure to clone the
-repository:
+Would you like to contribute to and improve this module? Fantastic. To contribute
+patches, run tests or benchmarks, make sure to clone the repository:
 
 ```
 git clone git://github.com/alexbain/lirc_node.git
@@ -23,11 +88,25 @@ cd lirc_node
 npm install
 ```
 
-## Tests
+You can run the test suite by running:
 
 ```
-$ make test
+make test
 ```
+
+## Contributing
+
+Before you submit a pull request with your change, please be sure to:
+
+* Add new tests that prove your change works as expected.
+* Ensure all existing tests are still passing.
+
+Once you're sure everything is still working, open a pull request with a clear
+description of what you changed and why. I will not accept a pull request which
+breaks existing tests or adds new functionality without tests.
+
+The exception to this would be refactoring existing code or changing documentation.
+
 
 ## License
 
