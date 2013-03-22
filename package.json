@@ -14,7 +14,6 @@
     "lirc"
   ],
   "dependencies": {
-    "q": "*"
   },
   "devDependencies": {
     "mocha": "*",
