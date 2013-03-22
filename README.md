@@ -9,6 +9,8 @@ devices using LIRC from a Node application.
 
 It is a part of the [Open Source Universal Remote](http://opensourceuniversalremote.com) project.
 
+[![Build Status](https://travis-ci.org/alexbain/lirc_node.png)](https://travis-ci.org/alexbain/lirc_node)
+
 ## What is this?
 
 LIRC is a fantastic open source software package that allows you to send and
