@@ -7,6 +7,8 @@ lirc_node
 It's designed to be used in a situation where you wish to control infrared
 devices using LIRC from a Node application.
 
+It is a part of the [Open Source Universal Remote](http://opensourceuniversalremote.com) project.
+
 ## What is this?
 
 LIRC is a fantastic open source software package that allows you to send and
