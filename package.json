@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "mocha": "*",
+    "q": "*",
     "should": "*",
     "sinon": "*"
   },
