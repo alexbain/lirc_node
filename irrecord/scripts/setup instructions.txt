@@ -1,0 +1,4 @@
+You must run these commands to enable these scripts for lirc_node:
+
+sudo chmod 755 startIRRecord
+sudo chmod 755 finishIRRecord
