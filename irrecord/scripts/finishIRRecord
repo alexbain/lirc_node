@@ -1,0 +1,7 @@
+#!/bin/bash
+#IRRecord shell script 
+#This script will copy the file that irrecord for node.js created into the lirc folder that it belongs in.
+echo "Copying the newely created lircd.conf file"
+sudo cp /home/pi/lirc_web/node_modules/lirc_node/irrecord/lircd.conf /etc/lirc/lircd.conf
+sleep 1
+sudo /etc/init.d/lirc restart
