@@ -20,5 +20,13 @@ describe('IRRecord', function() {
       });
     });
   });
+
+  describe('#send_once', function() {
+    it('should call the callback', function(done) {
+      irrecord.learnDeviceCharacteristics(function() {
+        done();
+      });
+    });
+  });
  
 });
