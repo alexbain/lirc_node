@@ -7,6 +7,7 @@ test:
 		--require test/common.js \
 		--reporter $(REPORTER) \
 		--growl \
+		--timeout 5000
 		$(TESTS)
 
 .PHONY: test bench

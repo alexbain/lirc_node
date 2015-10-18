@@ -19,10 +19,13 @@ executables that can be called to accomplish this.
 
 This module provides a wrapper around certain LIRC command line executables so
 that you can make LIRC calls from within a NodeJS app. At this time (v0.0.1) the
-only excutable that has a wrapper is ``irsend``. [irsend](http://www.lirc.org/html/irsend.html)
+only excutables that have a wrapper are ``irsend`` and ``irw``. [irsend](http://www.lirc.org/html/irsend.html)
 is used to send infrared commands. I have attempted to emulate every option and
 command that ``irsend`` currently documents on it's API page. There is a full
-test suite that can be ran to ensure that these options and commands work correctly.
+test suite that can be ran to ensure that these options and commands work correctly. 
+[irw](http://www.lirc.org/html/irw.html) is used to monitor the infra red receiver
+for incoming signals. Listeners for specific keys and/or remotes can be added with
+callback functions to handle the event.
 
 In a future version I hope to add support for calling additional LIRC executables.
 I have my eye on being able to call the ``irrecord`` executable from NodeJS to
@@ -57,6 +60,7 @@ Here is a very simple example of how to use the ``lirc_node`` module in
 a node app. I recommend reading through the source code for full details or to
 answer any ambiguities. There are additional options that are not shown here.
 
+    // Sending commands
     lirc_node = require('lirc_node');
     lirc_node.init();
 
@@ -81,6 +85,21 @@ answer any ambiguities. There are additional options that are not shown here.
     lirc_node.irsend.send_once("xbox360", "power", function() {
       console.log("Sent Xbox360 power command!");
     });
+
+
+    // Listening for commands
+    var listenerId = lirc_node.addListener(function(data) {
+      console.log("Received IR keypress '" + data.key + "'' from remote '" + data.remote +"'");
+    });
+
+    lirc_node.addListener('KEY_UP', 'remote1', function(data) {
+      console.log("Received IR keypress 'KEY_UP' from remote 'remote1'");
+      // data also has `code` and `repeat` properties from the output of `irw`
+      // The final argument after this callback is a throttle allowing you to 
+      // specify to only execute this callback once every x milliseconds.
+    }, 400);
+
+
 
 
 ## Development
