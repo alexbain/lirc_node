@@ -1,6 +1,6 @@
 {
   "name": "lirc_node",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Control LIRC from Node",
   "main": "lib/lirc_node.js",
   "scripts": {
@@ -13,8 +13,7 @@
   "keywords": [
     "lirc"
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "mocha": "*",
     "q": "*",
