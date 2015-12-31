@@ -1,6 +1,6 @@
 {
   "name": "lirc_node",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Control LIRC from Node",
   "main": "lib/lirc_node.js",
   "scripts": {
@@ -15,16 +15,20 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "mocha": "*",
-    "q": "*",
-    "should": "*",
-    "sinon": "*"
+    "mocha": "2.3.3",
+    "q": "1.4.1",
+    "should": "7.1.0",
+    "sinon": "1.17.1"
   },
   "author": "Alex Bain <alex@alexba.in>",
   "contributors": [
     {
       "name": "Mark Stickley",
       "email": "markstickley@theyakshack.co.uk"
+    },
+    {
+      "name": "Wouter Verweirder",
+      "email": ""
     }
   ]
 }

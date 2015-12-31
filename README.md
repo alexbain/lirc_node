@@ -18,7 +18,7 @@ receive infrared commands from Linux. It comes with a number of command line
 executables that can be called to accomplish this.
 
 This module provides a wrapper around certain LIRC command line executables so
-that you can make LIRC calls from within a NodeJS app. At this time (v0.0.1) the
+that you can make LIRC calls from within a NodeJS app. At this time (v0.0.4) the
 only excutables that have a wrapper are ``irsend`` and ``irw``. [irsend](http://www.lirc.org/html/irsend.html)
 is used to send infrared commands. I have attempted to emulate every option and
 command that ``irsend`` currently documents on it's API page. There is a full
@@ -142,7 +142,7 @@ The exception to this would be refactoring existing code or changing documentati
 
 (The MIT License)
 
-Copyright (c) 2013 Alex Bain &lt;alex@alexba.in&gt;
+Copyright (c) 2013-2015 Alex Bain &lt;alex@alexba.in&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
