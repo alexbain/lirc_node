@@ -1,55 +1,96 @@
-var lirc_node = require('../'),
+var IRSend = require('../lib/irsend');
     assert = require('assert'),
-    sinon = require('sinon');
+    sinon = require('sinon'),
+    child_process = require('child_process');
+
+require('sinon-as-promised');
 
 describe('IRSend', function() {
-  var irsend = new lirc_node.IRSend();
+  var execStub = sinon.stub(child_process, 'exec').resolves();
+  var irsend = new IRSend(execStub);
+
+  beforeEach(function() {
+  });
+
+  afterEach(function() {
+    execStub.reset();
+  });
 
   describe('#list', function() {
-    it('should call the callback', function(done) {
-      irsend.list('yamaha', 'KEY_POWER', function() {
+    it('should call child_process.exec', function(done) {
+      irsend.list('yamaha', 'KEY_POWER').then(function() {
+        assert(execStub.calledOnce);
         done();
       });
+    });
+
+    it('should return a promise', function(done) {
+      irsend.list('yamaha', 'KEY_POWER').then(function() { done(); });
     });
   });
 
   describe('#send_once', function() {
-    it('should call the callback', function(done) {
-      irsend.send_once('yamaha', 'KEY_POWER', function() {
+    it('should call child_process.exec', function(done) {
+      irsend.send_once('yamaha', 'KEY_POWER').then(function() {
+        assert(execStub.calledOnce);
         done();
       });
+    });
+
+    it('should return a promise', function(done) {
+      irsend.send_once('yamaha', 'KEY_POWER').then(function() { done(); });
     });
   });
 
   describe('#send_start', function() {
-    it('should call the callback', function(done) {
-      irsend.send_start('yamaha', 'KEY_POWER', function() {
+    it('should call child_process.exec', function(done) {
+      irsend.send_start('yamaha', 'KEY_POWER').then(function() {
+        assert(execStub.calledOnce);
         done();
       });
+    });
+
+    it('should return a promise', function(done) {
+      irsend.send_start('yamaha', 'KEY_POWER').then(function() { done(); });
     });
   });
 
   describe('#send_stop', function() {
-    it('should call the callback', function(done) {
-      irsend.send_stop('yamaha', 'KEY_POWER', function() {
+    it('should call child_process.exec', function(done) {
+      irsend.send_stop('yamaha', 'KEY_POWER').then(function() {
+        assert(execStub.calledOnce);
         done();
       });
+    });
+
+    it('should return a promise', function(done) {
+      irsend.send_stop('yamaha', 'KEY_POWER').then(function() { done(); });
     });
   });
 
   describe('#simulate', function() {
-    it('should call the callback', function(done) {
-      irsend.simulate('00110101001 BEEP BEEP', function() {
+    it('should call child_process.exec', function(done) {
+      irsend.simulate('00110101001 BEEP BEEP').then(function() {
+        assert(execStub.calledOnce);
         done();
       });
+    });
+
+    it('should return a promise', function(done) {
+      irsend.simulate('00110101001 BEEP BEEP').then(function() { done(); });
     });
   });
 
   describe('#set_transmitters', function() {
-    it('should call the callback', function(done) {
-      irsend.set_transmitters(1, function() {
+    it('should call child_process.exec', function(done) {
+      irsend.set_transmitters(1).then(function() {
+        assert(execStub.calledOnce);
         done();
       });
+    });
+
+    it('should return a promise', function(done) {
+      irsend.set_transmitters(1).then(function() { done(); });
     });
   });
 
