@@ -1,6 +1,6 @@
 {
   "name": "lirc_node",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Control LIRC from Node",
   "main": "lib/lirc_node.js",
   "scripts": {
@@ -13,12 +13,15 @@
   "keywords": [
     "lirc"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "bluebird": "3.2.1"
+  },
   "devDependencies": {
     "mocha": "2.3.3",
     "q": "1.4.1",
     "should": "7.1.0",
-    "sinon": "1.17.1"
+    "sinon": "1.17.1",
+    "sinon-as-promised": "4.0.0"
   },
   "author": "Alex Bain <alex@alexba.in>",
   "contributors": [

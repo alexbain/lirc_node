@@ -6,6 +6,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## [1.0.0] - 2016-02-05
+
+* Switching irsend from callbacks to promises. Breaking change.
 * Removing `Makefile` and just using `package.json` for running tests.
 
 ## [0.0.4] - 2015-12-30
