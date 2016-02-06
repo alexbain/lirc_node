@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.0.0] - 2016-02-05
 
+* Adding ESLint, updating project to conform to linter, TravisCI should lint
 * Switching irsend from callbacks to promises. Breaking change.
 * Removing `Makefile` and just using `package.json` for running tests.
 
