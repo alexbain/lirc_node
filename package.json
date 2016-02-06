@@ -4,7 +4,8 @@
   "description": "Control LIRC from Node",
   "main": "lib/lirc_node.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha --require should --require test/common.js --reporter dot --timeout 5000 test/*.js"
+    "test": "NODE_ENV=test mocha --require should --require test/common.js --reporter dot --timeout 5000 test/*.js",
+    "lint-js": "eslint lib/** test/**"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,8 @@
   },
   "devDependencies": {
     "mocha": "2.3.3",
-    "q": "1.4.1",
+    "eslint": "^1.10.0",
+    "eslint-config-airbnb": "^3.1.0",
     "should": "7.1.0",
     "sinon": "1.17.1",
     "sinon-as-promised": "4.0.0"
