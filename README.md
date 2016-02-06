@@ -62,10 +62,10 @@ answer any ambiguities. There are additional options that are not shown here.
 
     // Sending commands
     lirc_node = require('lirc_node');
-    lirc_node.init();
+    var promise = lirc_node.init();
 
-    // To see all of the remotes and commands that LIRC knows about:
-    console.log(lirc_node.remotes);
+    // After lirc_node has initialized, see all of the remotes and commands that LIRC knows about:
+    promise.then(function() { console.log(lirc_node.remotes); })
 
     /*
       Let's pretend that the output of lirc_node.remotes looks like this:
@@ -77,12 +77,12 @@ answer any ambiguities. There are additional options that are not shown here.
     */
 
     // Tell the TV to turn on
-    lirc_node.irsend.send_once("tv", "power", function() {
+    lirc_node.irsend.send_once("tv", "power").then(function() {
       console.log("Sent TV power command!");
     });
 
     // Tell the Xbox360 to turn on
-    lirc_node.irsend.send_once("xbox360", "power", function() {
+    lirc_node.irsend.send_once("xbox360", "power").then(function() {
       console.log("Sent Xbox360 power command!");
     });
 
@@ -95,11 +95,9 @@ answer any ambiguities. There are additional options that are not shown here.
     lirc_node.addListener('KEY_UP', 'remote1', function(data) {
       console.log("Received IR keypress 'KEY_UP' from remote 'remote1'");
       // data also has `code` and `repeat` properties from the output of `irw`
-      // The final argument after this callback is a throttle allowing you to 
+      // The final argument after this callback is a throttle allowing you to
       // specify to only execute this callback once every x milliseconds.
     }, 400);
-
-
 
 
 ## Development
