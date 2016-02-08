@@ -24,6 +24,9 @@
     "sinon-as-promised": "4.0.0"
   },
   "author": "Alex Bain <alex@alexba.in>",
+  "engines" : {
+    "node" : ">=4.2"
+  },
   "contributors": [
     {
       "name": "Mark Stickley",

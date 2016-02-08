@@ -11,6 +11,8 @@ It is a part of the [Open Source Universal Remote](http://opensourceuniversalrem
 
 [![Build Status](https://travis-ci.org/alexbain/lirc_node.png)](https://travis-ci.org/alexbain/lirc_node)
 
+Node.js >= v4.2 (LTS) required.
+
 ## What is this?
 
 LIRC is a fantastic open source software package that allows you to send and
@@ -152,7 +154,7 @@ The exception to this would be refactoring existing code or changing documentati
 
 (The MIT License)
 
-Copyright (c) 2013-2015 Alex Bain &lt;alex@alexba.in&gt;
+Copyright (c) 2013-2016 Alex Bain &lt;alex@alexba.in&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
