@@ -11,6 +11,8 @@ It is a part of the [Open Source Universal Remote](http://opensourceuniversalrem
 
 [![Build Status](https://travis-ci.org/alexbain/lirc_node.png)](https://travis-ci.org/alexbain/lirc_node)
 
+Node.js >= v4.2 (LTS) required.
+
 ## What is this?
 
 LIRC is a fantastic open source software package that allows you to send and
@@ -62,13 +64,17 @@ answer any ambiguities. There are additional options that are not shown here.
 
     // Sending commands
     lirc_node = require('lirc_node');
-    lirc_node.init();
 
-    // To see all of the remotes and commands that LIRC knows about:
-    console.log(lirc_node.remotes);
+    // After lirc_node has initialized, see all of the remotes and commands that LIRC knows about:
+    lirc_node.init().then(function(remotes) {
+      console.log(remotes); 
+
+      // or
+      // console.log(lirc_node.remotes)
+    })
 
     /*
-      Let's pretend that the output of lirc_node.remotes looks like this:
+      Output of lirc_node.remotes will look like this:
 
       {
         "tv": ["Power", "VolumeUp", "VolumeDown"],
@@ -77,29 +83,35 @@ answer any ambiguities. There are additional options that are not shown here.
     */
 
     // Tell the TV to turn on
-    lirc_node.irsend.send_once("tv", "power", function() {
+    lirc_node.irsend.send_once("tv", "Power").then(function() {
       console.log("Sent TV power command!");
     });
 
     // Tell the Xbox360 to turn on
-    lirc_node.irsend.send_once("xbox360", "power", function() {
+    lirc_node.irsend.send_once("xbox360", "Power").then(function() {
       console.log("Sent Xbox360 power command!");
     });
 
+    // Turn the volume up for 2 seconds
+    lirc_node.irsend.send_start("tv", "VolumeUp");
+    setTimeout(function() {
+      lirc_node.irsend.send_stop("tv", "VolumeUp");
+    }, 2000);
 
-    // Listening for commands
+    // Listen for all IR commands
     var listenerId = lirc_node.addListener(function(data) {
       console.log("Received IR keypress '" + data.key + "'' from remote '" + data.remote +"'");
     });
 
+    // Listen for a specific IR command
     lirc_node.addListener('KEY_UP', 'remote1', function(data) {
+      // `data` also has `code` and `repeat` properties from output of `irw`
+
       console.log("Received IR keypress 'KEY_UP' from remote 'remote1'");
-      // data also has `code` and `repeat` properties from the output of `irw`
-      // The final argument after this callback is a throttle allowing you to 
+
+      // The final argument after this callback is a throttle allowing you to
       // specify to only execute this callback once every x milliseconds.
     }, 400);
-
-
 
 
 ## Development
@@ -142,7 +154,7 @@ The exception to this would be refactoring existing code or changing documentati
 
 (The MIT License)
 
-Copyright (c) 2013-2015 Alex Bain &lt;alex@alexba.in&gt;
+Copyright (c) 2013-2016 Alex Bain &lt;alex@alexba.in&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
