@@ -1,0 +1,3 @@
+Python needs to be installed on your system for these scripts to run properly.
+
+sudo apt-get install python
